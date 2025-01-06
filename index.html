@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <title>Tarefas Trabalhistas</title>
+</head>
+<body>
+    <section class="wrapper">
+        <section class="title">
+            <h1>Tarefas Trabalhistas</h1>
+        </section>
+        <section class="form-container">
+            <form autocomplete="off" id="form">
+                
+                <section id="cnpj-container">
+                    <label for="cnpj-input">CNPJ:</label>
+                    <input type="text" id="cnpj-input" placeholder="cnpj...">
+                </section>
+
+                <section class="row-container">
+                    <div class="input-container">
+                        <label for="colab-select">Possui Colaboradores:</label>
+                        <select type="text" id="colab-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="dom-select">Doméstica</label>
+                        <select type="text" id="dom-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="row-container" id="faz-container">
+                    <div class="input-container">
+                        <label for="faz-select">Fazenda:</label>
+                        <select type="text" id="faz-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="fun-select">Funrural</label>
+                        <select type="text" id="fun-select" class="fazs-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="prin-select">Principal:</label>
+                        <select type="text" id="prin-select" class="fazs-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="row-container" id="mtz-container">
+                    <div class="input-container">
+                        <label for="mtz-select">Matriz:</label>
+                        <select type="text" id="mtz-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="folha-select">Somente Folha:</label>
+                        <select type="text" id="folha-select" class="mtzs-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="mfun-select">Funrural:</label>
+                        <select type="text" id="mfun-select" class="mtzs-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="row-container" id="fl-container">
+                    <div class="input-container">
+                        <label for="fl-select">Filial:</label>
+                        <select type="text" id="fl-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="mint-select">Matriz Interna:</label>
+                        <select type="text" id="mint-select" class="fls-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="flfolha-select">Somente Folha:</label>
+                        <select type="text" id="flfolha-select" class="fls-select">
+                            <option value="" selected></option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="row-container" id="trib-container">
+                    <div class="input-container">
+                        <label for="trib-select">Tributação:</label>
+                        <select type="text" id="trib-select">
+                            <option value="" selected></option>
+                            <option value="sn">Simples Nacional</option>
+                            <option value="mei">MEI</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                </section>
+
+                <div class="load-container">
+                    <button id="load-btn">
+                        GERAR
+                    </button>
+                </div>
+            </form>
+        </section>
+    </section>
+
+    <script src="./script.js"></script>
+</body>
+</html>
