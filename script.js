@@ -15,6 +15,8 @@ const jsonState = () => {
 const jsonStateManager = jsonState();
 
 const formatCnpj = (e) => {
+    document.querySelector('#cpf-input').value = '';
+
     let value = e.target.value.replace(/\D/g, '');
     if (value.length > 14) value = value.slice(0, 14);
 
@@ -25,6 +27,19 @@ const formatCnpj = (e) => {
 
     e.target.value = value;
 };
+
+const formatCpf = (e) => {
+    document.querySelector('#cnpj-input').value = '';
+
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+
+    value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+    value = value.replace(/\.(\d{3})(\d)/, '.$1-$2');
+
+    e.target.value = value;
+}
 
 const blockInputs = (e) => {
     const id = e.target.id.split('-')[0];
@@ -73,7 +88,7 @@ const blockInputs = (e) => {
 
         case 'dom':
             if (e.target.value === 'sim') {
-                block(['colab']);
+                block(['colab', 'trib']);
             } else {
                 unlock();
             }
@@ -324,11 +339,9 @@ const setJSON = (id, cnpj) => {
                 'PUBLICAR RECIBO ADIANTAMENTO 13º SALARIO'
             ]
 
-            console.log(tributSel.value)
             if (tributSel.value === 'outros') {
                 tasksMtzFolha.push('ATUALIZACAO FAP');
             }
-            console.log(tasksMtzFolha)
             
             createJSON(tasksMtzFolha, cnpj);
             break;
@@ -382,11 +395,10 @@ const checkType = (cnpj) => {
         setJSON(5, cnpj);
         return createSheet();
     }
-
-    if (flSel.value === 'sim' && mIntSel.value === 'sim' && flFolhaSel === 'nao') {
+    if (flSel.value === 'sim' && mIntSel.value === 'sim' && flFolhaSel.value === 'nao') {
         setJSON(6, cnpj);
         return createSheet();
-    } else if (flSel.value === 'sim' && mIntSel.value === 'nao' && flFolhaSel === 'sim') {
+    } else if (flSel.value === 'sim' && mIntSel.value === 'nao' && flFolhaSel.value === 'sim') {
         setJSON(7, cnpj);
         return createSheet();
     }
@@ -417,10 +429,21 @@ const getTasks = (e) => {
     const tributSel = document.querySelector('#trib-select');
 
     const elCnpj = document.querySelector('#cnpj-input');
-    if (elCnpj.value.length !== 18) {
-        alert('CNPJ inválido!')
-        return;
+    const elCpf = document.querySelector('#cpf-input');
+    
+    if (elCnpj.value !== '' && elCnpj.value.length !== 18) {
+        return alert('CNPJ inválido');
     }
+
+    if (elCpf.value !== '' && elCpf.value.length !== 14) {
+        return alert('CPF inválido');
+    }
+
+    if (elCpf.value === '' && elCnpj.value === '') {
+        return alert('Preencha o campo de CPF ou CNPJ');
+    }
+
+    const doc = elCnpj.value !== '' ? elCnpj.value : elCpf.value;
 
     const colSel = document.querySelector('#colab-select');
 
@@ -455,18 +478,21 @@ const getTasks = (e) => {
         }
 
 
-        if (ok) return checkType(elCnpj.value);
+        if (ok) return checkType(doc);
 
         alert('Preencha corretamente os campos.')
     } else {
-        setJSON(0, elCnpj.value);
+        setJSON(0, doc);
         createSheet();
     }
 };
 
 const setEvents = () => {
-    const cnpjInput = document.querySelector("#cnpj-input");
+    const cnpjInput = document.querySelector('#cnpj-input');
     cnpjInput.addEventListener('input', formatCnpj);
+
+    const cpfInput = document.querySelector('#cpf-input');
+    cpfInput.addEventListener('input', formatCpf);
 
     const selects = document.querySelectorAll('select');
     selects.forEach((sel) => {

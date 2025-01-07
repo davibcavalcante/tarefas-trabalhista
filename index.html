@@ -15,9 +15,26 @@
         <section class="form-container">
             <form autocomplete="off" id="form">
                 
-                <section id="cnpj-container">
-                    <label for="cnpj-input">CNPJ:</label>
-                    <input type="text" id="cnpj-input" placeholder="cnpj...">
+                <section class="row-container">
+                    <section id="cnpj-container">
+                        <label for="cnpj-input">CNPJ:</label>
+                        <input type="text" id="cnpj-input" placeholder="Digite o CNPJ">
+                    </section>
+
+                    <section id="cpf-container">
+                        <label for="cpf-input">CPF:</label>
+                        <input type="text" id="cpf-input" placeholder="Digite o CPF">
+                    </section>
+
+                    <section id="trib-container">
+                        <label for="trib-select">Tributação:</label>
+                        <select type="text" id="trib-select">
+                            <option value="" selected></option>
+                            <option value="sn">Simples Nacional</option>
+                            <option value="mei">MEI</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </section>
                 </section>
 
                 <section class="row-container">
@@ -128,15 +145,7 @@
                 </section>
 
                 <section class="row-container" id="trib-container">
-                    <div class="input-container">
-                        <label for="trib-select">Tributação:</label>
-                        <select type="text" id="trib-select">
-                            <option value="" selected></option>
-                            <option value="sn">Simples Nacional</option>
-                            <option value="mei">MEI</option>
-                            <option value="outros">Outros</option>
-                        </select>
-                    </div>
+                    
                 </section>
 
                 <div class="load-container">

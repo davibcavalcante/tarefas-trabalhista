@@ -35,17 +35,21 @@ body {
     text-align: center;
 }
 
-#cnpj-container {
-    margin-bottom: 20px;
+#cnpj-container, #cpf-container, #trib-container {
+    width: calc(33% - 10px);
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 12px;
 }
 
-#cnpj-container input {
+#cnpj-container input, #cpf-container input, #trib-container select {
     border: 1px solid black;
     border-radius: 6px;
     padding: 4px;
+}
+
+#cnpj-container label, #cpf-container label, #trib-container label {
+    display: block;
 }
 
 .row-container {
@@ -99,12 +103,4 @@ body {
 .load-container button:hover {
     color: #F69E3A;
     background-color: white;
-}
-
-#trib-container .input-container {
-    width: 100%;
-}
-
-#trib-container select {
-    width: calc(33% - 10px);
 }
